@@ -1,10 +1,11 @@
 ---
 interface Props {
 	class?: string;
+	showBadge?: boolean;
 	variant?: "light" | "dark";
 }
 
-const { class: className = "h-8 w-8", variant = "dark" } = Astro.props;
+const { class: className = "h-8 w-8", showBadge = true, variant = "dark" } = Astro.props;
 const colors =
 	variant === "light"
 		? {
@@ -30,7 +31,7 @@ const colors =
 	class={className}
 	aria-hidden="true"
 >
-	<circle cx="50" cy="50" r="45" fill={variant === "light" ? "#041627" : "#f4fafd"} />
+	{showBadge && <circle cx="50" cy="50" r="45" fill={variant === "light" ? "#041627" : "#f4fafd"} />}
 	<path d="M20 64.5h60c-5 10.5-55 10.5-60 0Z" fill={colors.hull} stroke={colors.stroke} stroke-width="3" stroke-linejoin="round" />
 	<path d="M50 19v43" stroke={colors.stroke} stroke-width="4" stroke-linecap="round" />
 	<path d="M52 22 76 56H52Z" fill={colors.sail} stroke={colors.stroke} stroke-width="3" stroke-linejoin="round" />

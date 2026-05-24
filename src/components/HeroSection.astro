@@ -1,11 +1,14 @@
 ---
 import Icon from "./Icon.astro";
+import LogoMark from "./LogoMark.astro";
 import { images, site } from "../data/site";
 ---
 
 <section class="hero-maritime relative w-full overflow-hidden px-md py-xl lg:px-lg">
-	<div class="weathered-wood absolute inset-0 opacity-5"></div>
 	<div class="nautical-grid absolute inset-0"></div>
+	<div class="pointer-events-none absolute -right-16 -top-16 opacity-[0.12] md:-right-20 md:-top-20 md:opacity-[0.14]">
+		<LogoMark class="h-72 w-72 md:h-96 md:w-96" variant="light" showBadge={false} />
+	</div>
 
 	<div class="relative z-10 mx-auto flex max-w-container-max flex-col items-center gap-xl md:flex-row">
 		<div class="reveal w-full space-y-md md:w-1/2">
@@ -26,14 +29,14 @@ import { images, site } from "../data/site";
 
 			<div class="flex flex-wrap gap-md pt-md">
 				<a
-					class="maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
+					class="cta-link maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
 					href="#booking-form"
 				>
 					<Icon name="handshake" />
 					Partner With Us
 				</a>
 				<a
-					class="flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
+					class="cta-link flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
 					href={site.instagramUrl}
 					target="_blank"
 					rel="noreferrer"

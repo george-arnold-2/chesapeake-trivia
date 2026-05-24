@@ -3,107 +3,109 @@ import Icon from "./Icon.astro";
 import { communityPillars, inquiryTypes, site } from "../data/site";
 ---
 
-<section class="relative overflow-hidden py-xl" id="booking-form">
+<section class="ocean-field relative overflow-hidden py-xl" id="booking-form">
 	<div class="pointer-events-none absolute -bottom-10 -right-10 opacity-5">
 		<Icon name="chat_bubble" class="text-[300px] text-primary" />
 	</div>
 
-	<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 gap-xl px-md lg:grid-cols-2">
-		<div class="reveal relative rounded-sm border-2 border-primary bg-white p-lg shadow-crisp-offset md:p-xl">
-			<div class="absolute right-4 top-4 text-primary opacity-20">
-				<p class="font-label-caps text-[10px]">LOG NO. 2026-A</p>
-			</div>
-			<div class="mb-md border-b-2 border-outline-variant pb-4">
-				<h3 class="font-headline-lg text-3xl uppercase text-primary">Event Dispatch Log</h3>
-				<p class="font-body-sm mt-1 text-on-surface-variant">Submit your partnership or event inquiry</p>
-			</div>
-
-			<form
-				class="space-y-md"
-				action="https://formsubmit.co/info@chesapeaketrivia.com"
-				method="POST"
-				data-inquiry-form
-			>
-				<input type="hidden" name="_subject" value="New Chesapeake Trivia inquiry" />
-				<input type="hidden" name="_template" value="table" />
-				<input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
-				<div class="grid grid-cols-1 gap-md pt-2">
-					<div class="space-y-2">
-						<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="contact-name">
-							Contact Name
-						</label>
-						<input
-							id="contact-name"
-							class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
-							placeholder="E.g. Sam Annapolis"
-							required
-							name="contact_name"
-							type="text"
-						/>
-					</div>
-					<div class="space-y-2">
-						<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="email-address">
-							Email Address
-						</label>
-						<input
-							id="email-address"
-							class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
-							placeholder="sam@localbiz.com"
-							required
-							name="email"
-							type="email"
-						/>
-					</div>
+	<div class="booking-grid relative z-10 mx-auto grid max-w-container-max grid-cols-1 gap-xl px-md lg:grid-cols-2">
+		<div class="booking-form-panel">
+			<div class="reveal relative rounded-sm border-2 border-primary bg-white p-lg shadow-crisp-offset md:p-xl">
+				<div class="absolute right-4 top-4 text-primary opacity-20">
+					<p class="font-label-caps text-[10px]">LOG NO. 2026-A</p>
+				</div>
+				<div class="mb-md border-b-2 border-outline-variant pb-4">
+					<h3 class="font-headline-lg text-3xl uppercase text-primary">Event Dispatch Log</h3>
+					<p class="font-body-sm mt-1 text-on-surface-variant">Submit your partnership or event inquiry</p>
 				</div>
 
-				<div class="grid grid-cols-1 gap-md">
-					<div class="space-y-2">
-						<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="inquiry-type">
-							Inquiry Type
-						</label>
-						<select
-							id="inquiry-type"
-							class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface focus:border-primary focus:ring-2 focus:ring-secondary/30"
-							name="inquiry_type"
-						>
-							{inquiryTypes.map((type) => <option>{type}</option>)}
-						</select>
-					</div>
-					<div class="space-y-2">
-						<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="target-date">
-							Target Date
-						</label>
-						<input
-							id="target-date"
-							class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface focus:border-primary focus:ring-2 focus:ring-secondary/30"
-							name="target_date"
-							type="date"
-						/>
-					</div>
-				</div>
-
-				<div class="space-y-2">
-					<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="message">
-						Message
-					</label>
-					<textarea
-						id="message"
-						class="min-h-32 w-full resize-y rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-sm text-base font-medium leading-relaxed text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
-						name="message"
-						placeholder="Tell us about the venue, event, or crowd you have in mind."
-						required
-					></textarea>
-				</div>
-
-				<button
-					class="maritime-btn flex w-full items-center justify-center gap-2 rounded-sm bg-primary py-md font-label-caps uppercase text-on-primary shadow-crisp-sm"
-					type="submit"
+				<form
+					class="space-y-md"
+					action="https://formsubmit.co/info@chesapeaketrivia.com"
+					method="POST"
+					data-inquiry-form
 				>
-					<Icon name="send" />
-					Dispatch Request
-				</button>
-				<p class="text-center text-xs font-medium text-on-surface-variant" data-form-status aria-live="polite"></p>
-			</form>
+					<input type="hidden" name="_subject" value="New Chesapeake Trivia inquiry" />
+					<input type="hidden" name="_template" value="table" />
+					<input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+					<div class="grid grid-cols-1 gap-md pt-2">
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="contact-name">
+								Contact Name
+							</label>
+							<input
+								id="contact-name"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								placeholder="E.g. Sam Annapolis"
+								required
+								name="contact_name"
+								type="text"
+							/>
+						</div>
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="email-address">
+								Email Address
+							</label>
+							<input
+								id="email-address"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								placeholder="sam@localbiz.com"
+								required
+								name="email"
+								type="email"
+							/>
+						</div>
+					</div>
+
+					<div class="grid grid-cols-1 gap-md">
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="inquiry-type">
+								Inquiry Type
+							</label>
+							<select
+								id="inquiry-type"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								name="inquiry_type"
+							>
+								{inquiryTypes.map((type) => <option>{type}</option>)}
+							</select>
+						</div>
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="target-date">
+								Target Date
+							</label>
+							<input
+								id="target-date"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								name="target_date"
+								type="date"
+							/>
+						</div>
+					</div>
+
+					<div class="space-y-2">
+						<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="message">
+							Message
+						</label>
+						<textarea
+							id="message"
+							class="min-h-32 w-full resize-y rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-sm text-base font-medium leading-relaxed text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
+							name="message"
+							placeholder="Tell us about the venue, event, or crowd you have in mind."
+							required
+						></textarea>
+					</div>
+
+					<button
+						class="cta-link maritime-btn flex w-full items-center justify-center gap-2 rounded-sm bg-primary py-md font-label-caps uppercase text-on-primary shadow-crisp-sm"
+						type="submit"
+					>
+						<Icon name="send" />
+						Dispatch Request
+					</button>
+					<p class="text-center text-xs font-medium text-on-surface-variant" data-form-status aria-live="polite"></p>
+				</form>
+			</div>
 		</div>
 
 		<div class="flex flex-col justify-center gap-md lg:gap-lg">
@@ -147,7 +149,7 @@ import { communityPillars, inquiryTypes, site } from "../data/site";
 					together over time.
 				</p>
 				<a
-					class="mt-sm inline-flex items-center gap-2 font-label-caps text-xs uppercase text-secondary transition-colors hover:text-primary"
+					class="cta-link mt-sm inline-flex items-center gap-2 font-label-caps text-xs uppercase text-secondary transition-colors hover:text-primary"
 					href={site.instagramUrl}
 					target="_blank"
 					rel="noreferrer"

@@ -155,27 +155,40 @@ a {
 
 .hero-maritime {
     background:
-        linear-gradient(rgba(0, 30, 64, 0.92), rgba(0, 30, 64, 0.85)),
-        url("https://lh3.googleusercontent.com/aida-public/AB6AXuB6mD_h7S2M0o9t4q9z3_7Z7y0r7v8-8p6s-4b2m6l2u-6p8q7-4b2m-6l2u-6p8q");
+        linear-gradient(180deg, #041627 0%, #102637 100%);
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     position: relative;
 }
 
 .ocean-field {
     background-image:
-        linear-gradient(rgba(244, 250, 253, 0.5), rgba(244, 250, 253, 0.56)),
+        linear-gradient(rgba(244, 250, 253, 0.4), rgba(244, 250, 253, 0.46)),
         url("/images/ocean-field.jpg");
     background-image:
-        linear-gradient(rgba(244, 250, 253, 0.5), rgba(244, 250, 253, 0.56)),
+        linear-gradient(rgba(244, 250, 253, 0.4), rgba(244, 250, 253, 0.46)),
         url("/images/ocean-field.webp");
     background-position:
         center,
         center -10px;
+    background-repeat:
+        no-repeat,
+        no-repeat;
     background-size:
         cover,
-        cover;
+        calc(100% + 64px) calc(100% + 64px);
     position: relative;
+}
+
+.section-band {
+    background:
+        linear-gradient(180deg, rgba(238, 245, 247, 0.98), rgba(226, 233, 236, 0.98));
+    position: relative;
+}
+
+.booking-form-panel {
+    display: contents;
 }
 
 .maritime-btn {
@@ -214,6 +227,10 @@ a {
     transform: translateX(2px);
 }
 
+.cta-link {
+    max-width: 100%;
+}
+
 .logbook-line {
     background-image: repeating-linear-gradient(transparent, transparent 31px, #dde4e6 31px, #dde4e6 32px);
 }
@@ -246,15 +263,83 @@ a {
 }
 
 @media (max-width: 767px) {
-    main > section:nth-of-type(odd) .reveal {
+    .ocean-field {
+        background-image:
+            linear-gradient(rgba(244, 250, 253, 0.4), rgba(244, 250, 253, 0.46)),
+            url("/images/ocean-field.jpg");
+        background-image:
+            linear-gradient(rgba(244, 250, 253, 0.4), rgba(244, 250, 253, 0.46)),
+            url("/images/ocean-field.webp");
+        background-position:
+            center,
+            center -10px;
+        background-repeat:
+            no-repeat,
+            no-repeat;
+        background-size:
+            cover,
+            1120px auto;
+    }
+
+    #about-host.ocean-field {
+        background-size:
+            cover,
+            auto calc(100% + 96px);
+    }
+
+    #booking-form.ocean-field {
+        background:
+            linear-gradient(180deg, rgba(238, 245, 247, 0.98), rgba(226, 233, 236, 0.98));
+        padding-bottom: 3rem;
+        padding-top: 0;
+    }
+
+    #booking-form .booking-grid {
+        gap: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #booking-form .booking-form-panel {
+        background-image:
+            linear-gradient(rgba(244, 250, 253, 0.4), rgba(244, 250, 253, 0.46)),
+            url("/images/ocean-field.jpg");
+        background-image:
+            linear-gradient(rgba(244, 250, 253, 0.4), rgba(244, 250, 253, 0.46)),
+            url("/images/ocean-field.webp");
+        background-position:
+            center,
+            center -10px;
+        background-repeat:
+            no-repeat,
+            repeat-y;
+        background-size:
+            cover,
+            980px auto;
+        display: block;
+        padding: 3rem 1.5rem;
+    }
+
+    #booking-form .booking-grid > .flex {
+        padding: 3rem 1.5rem 0;
+    }
+
+    .cta-link {
+        justify-content: center;
+        min-height: 44px;
+        text-align: center;
+        width: 100%;
+    }
+
+    main>section:nth-of-type(odd) .reveal {
         transform: translate3d(-28px, 0, 0);
     }
 
-    main > section:nth-of-type(even) .reveal {
+    main>section:nth-of-type(even) .reveal {
         transform: translate3d(28px, 0, 0);
     }
 
-    main > section .reveal.active {
+    main>section .reveal.active {
         transform: translate3d(0, 0, 0);
     }
 }
@@ -277,29 +362,25 @@ a {
     0% {
         background-position:
             center,
-            center -10px;
+            center -24px;
     }
 
     50% {
         background-position:
             center,
-            calc(50% + 16px) 0px;
+            calc(50% + 16px) -8px;
     }
 
     100% {
         background-position:
             center,
-            center -10px;
+            center -24px;
     }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .hero-maritime {
-        animation: water-ripple 15s ease-in-out infinite;
-    }
-
     .ocean-field {
-        animation: ocean-current 7s ease-in-out infinite;
+        animation: ocean-current 5s ease-in-out infinite;
     }
 }
 
