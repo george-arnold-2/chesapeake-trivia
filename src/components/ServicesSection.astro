@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { images, partnerBenefits } from "../data/site";
+import { images, partnerBenefits, site } from "../data/site";
 ---
 
 <section class="w-full border-b border-primary/10 px-md py-xl" id="services">
@@ -87,7 +87,15 @@ import { images, partnerBenefits } from "../data/site";
 					Our mission is creating space for the adult community to bond over shared knowledge and friendly rivalry.
 				</p>
 				<div class="border-t border-outline-variant pt-sm">
-					<p class="font-label-caps text-xs uppercase text-secondary">Join the Community Movement</p>
+					<a
+						class="inline-flex items-center gap-2 font-label-caps text-xs uppercase text-secondary transition-all hover:gap-3 hover:text-primary"
+						href={site.instagramUrl}
+						target="_blank"
+						rel="noreferrer"
+					>
+						<Icon name="instagram" class="h-4 w-4" />
+						Join the Community Movement
+					</a>
 				</div>
 			</div>
 

@@ -4,6 +4,8 @@ export const site = {
 	description:
 		"Vibrant local hosting for Annapolis bars, pubs, private events, and community trivia nights.",
 	email: "info@chesapeaketrivia.com",
+	instagramUrl: "https://www.instagram.com/chesapeaketrivia",
+	instagramHandle: "@chesapeaketrivia",
 	established: "2026",
 	location: "Annapolis",
 };
@@ -12,6 +14,7 @@ export const navLinks = [
 	{ label: "Nights", href: "/#services" },
 	{ label: "Partner Locations", href: "/locations" },
 	{ label: "Leaderboard", href: "/leaderboard" },
+	{ label: "Instagram", href: site.instagramUrl, external: true },
 	{ label: "Partner With Us", href: "/partner-with-us", featured: true },
 ];
 
@@ -94,6 +97,7 @@ export const communityPillars = [
 ];
 
 export const footerLinks = [
+	{ label: "Instagram", href: site.instagramUrl, external: true },
 	{ label: "Charter Terms", href: "#" },
 	{ label: "Privacy Log", href: "#" },
 	{ label: "Partnership Inquiry", href: "/partner-with-us" },

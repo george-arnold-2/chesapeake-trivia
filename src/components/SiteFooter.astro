@@ -23,6 +23,8 @@ import { footerLinks, site } from "../data/site";
 					<a
 						class="font-label-caps text-xs uppercase text-primary-fixed-dim/80 transition-all hover:text-secondary-container"
 						href={link.href}
+						target={link.external ? "_blank" : undefined}
+						rel={link.external ? "noreferrer" : undefined}
 					>
 						{link.label}
 					</a>

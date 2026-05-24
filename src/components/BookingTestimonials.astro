@@ -1,6 +1,6 @@
 ---
 import Icon from "./Icon.astro";
-import { communityPillars, inquiryTypes } from "../data/site";
+import { communityPillars, inquiryTypes, site } from "../data/site";
 ---
 
 <section class="relative overflow-hidden py-xl" id="booking-form">
@@ -146,6 +146,15 @@ import { communityPillars, inquiryTypes } from "../data/site";
 					Chesapeake Trivia is built around repeatable nights that help venues, teams, and local groups grow
 					together over time.
 				</p>
+				<a
+					class="mt-sm inline-flex items-center gap-2 font-label-caps text-xs uppercase text-secondary transition-colors hover:text-primary"
+					href={site.instagramUrl}
+					target="_blank"
+					rel="noreferrer"
+				>
+					<Icon name="instagram" class="h-4 w-4" />
+					Follow for launch updates
+				</a>
 			</div>
 		</div>
 	</div>

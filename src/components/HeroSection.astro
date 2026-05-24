@@ -34,10 +34,12 @@ import { images, site } from "../data/site";
 				</a>
 				<a
 					class="flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
-					href="/leaderboard"
+					href={site.instagramUrl}
+					target="_blank"
+					rel="noreferrer"
 				>
-					<Icon name="leaderboard" />
-					Leaderboard
+					<Icon name="instagram" class="h-5 w-5" />
+					Follow on Instagram
 				</a>
 			</div>
 		</div>

@@ -23,6 +23,8 @@ const mobileLinks = [{ label: "Home", href: "/" }, { label: "About Founder", hre
 							: "text-on-surface-variant",
 					]}
 					href={link.href}
+					target={link.external ? "_blank" : undefined}
+					rel={link.external ? "noreferrer" : undefined}
 				>
 					{link.label}
 				</a>
@@ -44,12 +46,18 @@ const mobileLinks = [{ label: "Home", href: "/" }, { label: "About Founder", hre
 						<a
 							class:list={[
 								"flex items-center justify-between border-b border-outline-variant px-sm py-sm font-label-caps text-xs uppercase text-primary last:border-b-0 hover:text-secondary",
+								link.label === "Instagram" && "bg-secondary/10 text-secondary",
 								link.featured && "text-secondary",
 							]}
 							href={link.href}
+							target={link.external ? "_blank" : undefined}
+							rel={link.external ? "noreferrer" : undefined}
 						>
-							{link.label}
-							<Icon name="arrow_forward" class="text-sm" />
+							<span class="flex items-center gap-2">
+								{link.label === "Instagram" && <Icon name="instagram" class="h-4 w-4" />}
+								{link.label}
+							</span>
+							<Icon name={link.external ? "open_in_new" : "arrow_forward"} class="text-sm" />
 						</a>
 					))
 				}
