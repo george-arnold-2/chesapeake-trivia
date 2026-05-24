@@ -1,0 +1,27 @@
+---
+import Icon from "./Icon.astro";
+import { features } from "../data/site";
+---
+
+<section class="relative overflow-hidden border-b-2 border-primary/10 bg-surface-container py-md">
+	<div class="weathered-wood absolute inset-0"></div>
+	<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 gap-md px-md md:grid-cols-3">
+		{
+			features.map((feature, index) => (
+				<div
+					class:list={[
+						"reveal flex items-center gap-sm border-primary/10 pr-4 md:border-r md:last:border-none",
+						index === 1 && "reveal-delay-1",
+						index === 2 && "reveal-delay-2",
+					]}
+				>
+					<Icon name={feature.icon} class="text-primary text-3xl" />
+					<div>
+						<p class="font-label-caps uppercase text-primary">{feature.title}</p>
+						<p class="font-body-sm text-sm text-on-surface-variant">{feature.description}</p>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</section>

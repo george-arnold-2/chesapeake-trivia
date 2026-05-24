@@ -1,0 +1,225 @@
+---
+import Icon from "../components/Icon.astro";
+import LogoMark from "../components/LogoMark.astro";
+import PageInteractions from "../components/PageInteractions.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { inquiryTypes, partnerBenefits, site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title={`Partner With Us | ${site.name}`}
+	description="Partner with Chesapeake Trivia for recurring trivia nights, private events, and community gatherings in Annapolis."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-background">
+		<section class="relative overflow-hidden bg-primary px-md py-xl text-on-primary lg:px-lg">
+			<div class="nautical-grid absolute inset-0"></div>
+			<div class="absolute -right-12 -top-14 opacity-10">
+				<LogoMark class="h-72 w-72" variant="light" />
+			</div>
+
+			<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 items-center gap-xl lg:grid-cols-[1fr_auto]">
+				<div class="reveal max-w-3xl space-y-md">
+					<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
+						<Icon name="handshake" class="text-on-secondary text-sm" />
+						<span class="font-label-caps text-[10px] uppercase text-on-secondary">Partner With Us</span>
+					</div>
+					<h1 class="font-display-lg text-5xl uppercase leading-tight md:text-7xl">Bring Trivia to Your Room</h1>
+					<p class="font-body-lg text-body-lg text-primary-fixed-dim/90">
+						Whether you run a bar, restaurant, private event, or community gathering, we can shape a trivia night
+						that feels lively, well-paced, and worth coming back to.
+					</p>
+				</div>
+
+				<div class="reveal reveal-delay-1 flex flex-wrap gap-md lg:justify-end">
+					<a
+						class="maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
+						href="#partner-form"
+					>
+						<Icon name="send" />
+						Start the Conversation
+					</a>
+					<a
+						class="flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
+						href="/locations"
+					>
+						<Icon name="location_on" />
+						View Locations
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="ocean-field px-md py-xl lg:px-lg">
+			<div class="mx-auto grid max-w-container-max grid-cols-1 gap-xl lg:grid-cols-[0.9fr_1.1fr]">
+				<div class="space-y-lg">
+					<div class="reveal rounded-sm border-2 border-primary bg-white/88 p-lg shadow-crisp-offset backdrop-blur-sm">
+						<p class="font-label-caps text-xs uppercase text-secondary">What We Help With</p>
+						<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">A sharper recurring night</h2>
+						<p class="mt-md leading-relaxed text-on-surface">
+							Good trivia is not just questions. It is timing, room energy, promotion, clear rules, readable
+							rounds, and a host who knows when to keep things moving.
+						</p>
+						<ul class="mt-md space-y-sm">
+							{
+								partnerBenefits.map((benefit) => (
+									<li class="flex items-center gap-sm text-sm font-medium text-on-surface">
+										<Icon name="check_circle" class="text-secondary text-lg" />
+										{benefit}
+									</li>
+								))
+							}
+							<li class="flex items-center gap-sm text-sm font-medium text-on-surface">
+								<Icon name="check_circle" class="text-secondary text-lg" />
+								Event pacing and format planning
+							</li>
+						</ul>
+					</div>
+
+					<div class="reveal reveal-delay-1 rounded-sm border-l-8 border-secondary bg-white/65 p-md backdrop-blur-sm md:p-lg">
+						<p class="font-body-lg font-medium leading-relaxed text-primary">
+							The goal is to create nights that are easy for venues to promote, easy for teams to understand, and
+							memorable enough that people invite someone next week.
+						</p>
+					</div>
+				</div>
+
+				<div
+					id="partner-form"
+					class="reveal reveal-delay-1 relative rounded-sm border-2 border-primary bg-white p-lg shadow-crisp-offset md:p-xl"
+				>
+					<div class="mb-md border-b-2 border-outline-variant pb-4">
+						<h2 class="font-headline-lg text-3xl uppercase text-primary">Partnership Inquiry</h2>
+						<p class="font-body-sm mt-1 text-on-surface-variant">Tell us what kind of night you are imagining</p>
+					</div>
+
+					<form
+						class="space-y-md"
+						action="https://formsubmit.co/info@chesapeaketrivia.com"
+						method="POST"
+						data-inquiry-form
+					>
+						<input type="hidden" name="_subject" value="New Chesapeake Trivia partner inquiry" />
+						<input type="hidden" name="_template" value="table" />
+						<input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
+
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="partner-contact-name">
+								Contact Name
+							</label>
+							<input
+								id="partner-contact-name"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								placeholder="E.g. Sam Annapolis"
+								required
+								name="contact_name"
+								type="text"
+							/>
+						</div>
+
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="partner-email-address">
+								Email Address
+							</label>
+							<input
+								id="partner-email-address"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								placeholder="sam@localbiz.com"
+								required
+								name="email"
+								type="email"
+							/>
+						</div>
+
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="partner-inquiry-type">
+								Inquiry Type
+							</label>
+							<select
+								id="partner-inquiry-type"
+								class="h-12 w-full rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-2 text-base font-medium text-on-surface focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								name="inquiry_type"
+							>
+								{inquiryTypes.map((type) => <option>{type}</option>)}
+							</select>
+						</div>
+
+						<div class="space-y-2">
+							<label class="font-label-caps text-[11px] font-bold uppercase text-primary" for="partner-message">
+								Message
+							</label>
+							<textarea
+								id="partner-message"
+								class="min-h-32 w-full resize-y rounded-sm border-2 border-outline-variant bg-surface-container-lowest px-sm py-sm text-base font-medium leading-relaxed text-on-surface placeholder:text-outline focus:border-primary focus:ring-2 focus:ring-secondary/30"
+								name="message"
+								placeholder="Tell us about the venue, event, or crowd you have in mind."
+								required
+							></textarea>
+						</div>
+
+						<button
+							class="maritime-btn flex w-full items-center justify-center gap-2 rounded-sm bg-primary py-md font-label-caps uppercase text-on-primary shadow-crisp-sm"
+							type="submit"
+						>
+							<Icon name="send" />
+							Send Inquiry
+						</button>
+						<p class="text-center text-xs font-medium text-on-surface-variant" data-form-status aria-live="polite"></p>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+	<SiteFooter />
+	<PageInteractions />
+</BaseLayout>
+
+<script>
+	document.querySelectorAll<HTMLFormElement>("[data-inquiry-form]").forEach((form) => {
+		form.addEventListener("submit", (event) => {
+			event.preventDefault();
+
+			const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
+			const status = form.querySelector<HTMLElement>("[data-form-status]");
+			if (!button) return;
+
+			const originalText = button.innerHTML;
+			button.disabled = true;
+			button.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">hourglass_top</span> Sending...';
+			status?.classList.remove("text-error");
+			if (status) status.textContent = "";
+
+			fetch("https://formsubmit.co/ajax/info@chesapeaketrivia.com", {
+				method: "POST",
+				headers: {
+					Accept: "application/json",
+				},
+				body: new FormData(form),
+			})
+				.then((response) => {
+					if (!response.ok) {
+						throw new Error("Form submission failed");
+					}
+
+					button.innerHTML = '<span class="material-symbols-outlined" aria-hidden="true">mark_email_read</span> Inquiry Sent!';
+					button.classList.add("bg-secondary");
+					button.classList.remove("bg-primary");
+					if (status) {
+						status.textContent =
+							"Thanks. Your request is on its way. If this is the first submission, check the inbox for FormSubmit activation.";
+					}
+					form.reset();
+				})
+				.catch(() => {
+					button.innerHTML = originalText;
+					status?.classList.add("text-error");
+					if (status) status.textContent = "Something went wrong. Please email info@chesapeaketrivia.com directly.";
+				})
+				.finally(() => {
+					button.disabled = false;
+				});
+		});
+	});
+</script>

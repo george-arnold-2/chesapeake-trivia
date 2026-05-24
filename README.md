@@ -1,43 +1,32 @@
-# Astro Starter Kit: Minimal
+# Chesapeake Trivia Site
+
+Astro static site for Chesapeake Trivia.
+
+## Editing Map
+
+- `src/pages/index.astro` composes the homepage sections in order.
+- `src/layouts/BaseLayout.astro` owns the document shell, metadata, fonts, favicon links, and global CSS import.
+- `src/components/` contains the editable page sections.
+- `src/data/site.ts` contains shared copy, links, image URLs, feature lists, leaderboard data, and form options.
+- `src/styles/global.css` contains Tailwind, design tokens, textures, animations, and global utilities.
+
+## Commands
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This project currently requires Node `>=22.12.0`, matching the installed Astro version.
 
-## 🚀 Project Structure
+## Deployment
 
-Inside of your Astro project, you'll see the following folders and files:
+This site deploys to GitHub Pages from `.github/workflows/deploy.yml`.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- Production URL: `https://chesapeaketrivia.com`
+- Custom domain file: `public/CNAME`
+- GitHub Pages source should be set to **GitHub Actions** in the repository settings.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+For the apex domain, point DNS at GitHub Pages and configure the custom domain in the repository Pages settings.

@@ -1,0 +1,102 @@
+---
+import Icon from "../components/Icon.astro";
+import LogoMark from "../components/LogoMark.astro";
+import PageInteractions from "../components/PageInteractions.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title={`Locations | ${site.name}`}
+	description="Upcoming Chesapeake Trivia partner locations in Annapolis."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-background">
+		<section class="relative overflow-hidden bg-primary px-md py-xl text-on-primary lg:px-lg">
+			<div class="nautical-grid absolute inset-0"></div>
+			<div class="absolute -right-12 -top-14 opacity-10">
+				<LogoMark class="h-72 w-72" variant="light" />
+			</div>
+
+			<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 items-center gap-xl lg:grid-cols-[1fr_auto]">
+				<div class="reveal max-w-3xl space-y-md">
+					<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
+						<Icon name="location_on" class="text-on-secondary text-sm" />
+						<span class="font-label-caps text-[10px] uppercase text-on-secondary">Partner Locations</span>
+					</div>
+					<h1 class="font-display-lg text-5xl uppercase leading-tight md:text-7xl">Locations</h1>
+					<p class="font-body-lg text-body-lg text-primary-fixed-dim/90">
+						We are charting the first Annapolis trivia nights now. The goal is simple: welcoming rooms, lively
+						crowds, and local spots that become weekly traditions.
+					</p>
+				</div>
+
+				<div class="reveal reveal-delay-1 flex flex-wrap gap-md lg:justify-end">
+					<a
+						class="maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
+						href="/partner-with-us"
+					>
+						<Icon name="handshake" />
+						Partner With Us
+					</a>
+					<a
+						class="flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
+						href="/leaderboard"
+					>
+						<Icon name="leaderboard" />
+						View Leaderboard
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="ocean-field px-md py-xl lg:px-lg">
+			<div class="mx-auto max-w-container-max">
+				<div class="reveal relative overflow-hidden rounded-sm border-2 border-primary bg-white/88 p-lg shadow-crisp-offset backdrop-blur-sm md:p-xl">
+					<div class="pointer-events-none absolute -right-8 -top-10 opacity-[0.045]">
+						<LogoMark class="h-64 w-64" />
+					</div>
+
+					<div class="relative z-10 grid grid-cols-1 gap-lg lg:grid-cols-[1fr_auto] lg:items-center">
+						<div class="max-w-3xl space-y-md">
+							<p class="font-label-caps text-xs uppercase text-secondary">Coming Soon</p>
+							<h2 class="font-headline-lg text-4xl uppercase text-primary">No locations at the moment</h2>
+							<p class="font-body-lg leading-relaxed text-on-surface">
+								Plans are in motion to start trivia soon. We are talking with local venues, shaping the first
+								schedule, and getting ready to launch regular nights around Annapolis.
+							</p>
+						</div>
+
+						<div class="flex h-36 w-full items-center justify-center rounded-sm border-2 border-outline-variant bg-surface-container-low/90 lg:h-44 lg:w-56">
+							<div class="text-center">
+								<Icon name="sailing" class="text-secondary text-5xl" />
+								<p class="mt-2 font-label-caps text-xs uppercase text-primary">First ports soon</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="relative z-10 mt-lg flex flex-wrap gap-md border-t border-outline-variant pt-md">
+						<a
+							class="maritime-btn flex items-center gap-2 rounded-sm bg-primary px-lg py-md font-label-caps uppercase text-on-primary shadow-crisp-sm"
+							href="/partner-with-us"
+						>
+							<Icon name="storefront" />
+							Host Trivia Here
+						</a>
+						<a
+							class="flex items-center gap-2 rounded-sm border-2 border-primary px-lg py-md font-label-caps uppercase text-primary transition-all hover:bg-primary hover:text-on-primary"
+							href="/"
+						>
+							<Icon name="home" />
+							Return Home
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<SiteFooter />
+	<PageInteractions />
+</BaseLayout>

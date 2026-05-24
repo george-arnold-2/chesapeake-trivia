@@ -1,17 +1,26 @@
 ---
-
+import AboutHost from "../components/AboutHost.astro";
+import BookingTestimonials from "../components/BookingTestimonials.astro";
+import FeatureBar from "../components/FeatureBar.astro";
+import HeroSection from "../components/HeroSection.astro";
+import PageInteractions from "../components/PageInteractions.astro";
+import ServicesSection from "../components/ServicesSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+	<SiteHeader />
+	<main class="flex-grow">
+		<HeroSection />
+		<FeatureBar />
+		<div class="ocean-field">
+			<AboutHost />
+			<ServicesSection />
+			<BookingTestimonials />
+		</div>
+	</main>
+	<SiteFooter />
+	<PageInteractions />
+</BaseLayout>

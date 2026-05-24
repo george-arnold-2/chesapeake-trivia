@@ -1,0 +1,66 @@
+---
+import Icon from "./Icon.astro";
+import { images, site } from "../data/site";
+---
+
+<section class="hero-maritime relative w-full overflow-hidden px-md py-xl lg:px-lg">
+	<div class="weathered-wood absolute inset-0 opacity-5"></div>
+	<div class="nautical-grid absolute inset-0"></div>
+
+	<div class="relative z-10 mx-auto flex max-w-container-max flex-col items-center gap-xl md:flex-row">
+		<div class="reveal w-full space-y-md md:w-1/2">
+			<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
+				<Icon name="local_activity" class="text-on-secondary text-sm" />
+				<span class="font-label-caps text-[10px] uppercase text-on-secondary">
+					Established in {site.location} &middot; {site.established}
+				</span>
+			</div>
+
+			<h1 class="font-display-lg text-5xl uppercase leading-tight text-on-primary md:text-7xl">
+				Connecting Annapolis Through the Power of Trivia
+			</h1>
+			<p class="font-body-lg text-body-lg max-w-[36rem] text-primary-fixed-dim/90">
+				Vibrant local hosting for adults thirsty for real connection. We turn local bars and pubs into
+				buzzing hubs of camaraderie and friendly competition.
+			</p>
+
+			<div class="flex flex-wrap gap-md pt-md">
+				<a
+					class="maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
+					href="#booking-form"
+				>
+					<Icon name="handshake" />
+					Partner With Us
+				</a>
+				<a
+					class="flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
+					href="/leaderboard"
+				>
+					<Icon name="leaderboard" />
+					Leaderboard
+				</a>
+			</div>
+		</div>
+
+		<div class="reveal reveal-delay-1 relative w-full md:w-1/2">
+			<div class="aspect-video rounded-sm border-4 border-white/20 bg-white/5 p-2 shadow-crisp-lg">
+				<img
+					src={images.hero}
+					alt="Vibrant local trivia night"
+					class="h-full w-full rounded-sm object-cover brightness-75 grayscale transition-all duration-700 hover:grayscale-0"
+					loading="eager"
+				/>
+			</div>
+
+			<div
+				id="parallax-badge"
+				class="absolute -bottom-10 -left-3 z-20 flex h-32 w-32 rotate-[-12deg] flex-col items-center justify-center rounded-full border-2 border-primary bg-surface-container-low p-4 text-center shadow-crisp-md transition-transform duration-300 ease-out sm:-left-10"
+			>
+				<Icon name="diversity_3" class="text-secondary text-3xl" />
+				<p class="mt-1 text-[10px] font-bold uppercase leading-tight text-primary">Community<br />Driven</p>
+				<div class="my-1 h-px w-8 bg-primary/20"></div>
+				<p class="text-[8px] font-medium text-on-surface-variant">Est. {site.established}</p>
+			</div>
+		</div>
+	</div>
+</section>

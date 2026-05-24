@@ -1,0 +1,139 @@
+---
+import Icon from "../components/Icon.astro";
+import LogoMark from "../components/LogoMark.astro";
+import PageInteractions from "../components/PageInteractions.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { leaderboardMonths, site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title={`Leaderboard | ${site.name}`}
+	description="Monthly Chesapeake Trivia team standings for Annapolis trivia nights."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-background">
+		<section class="relative overflow-hidden bg-primary px-md py-xl text-on-primary lg:px-lg">
+			<div class="nautical-grid absolute inset-0"></div>
+			<div class="absolute -right-12 -top-14 opacity-10">
+				<LogoMark class="h-72 w-72" variant="light" />
+			</div>
+
+			<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 items-center gap-xl lg:grid-cols-[1fr_auto]">
+				<div class="reveal max-w-3xl space-y-md">
+					<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
+						<Icon name="leaderboard" class="text-on-secondary text-sm" />
+						<span class="font-label-caps text-[10px] uppercase text-on-secondary">Monthly Standings</span>
+					</div>
+					<h1 class="font-display-lg text-5xl uppercase leading-tight md:text-7xl">Leaderboard</h1>
+					<p class="font-body-lg text-body-lg text-primary-fixed-dim/90">
+						Track the teams making waves across Annapolis trivia nights. Bring the crowd, claim the table, and
+						keep your venue in the conversation week after week.
+					</p>
+				</div>
+
+				<div class="reveal reveal-delay-1 flex flex-wrap gap-md lg:justify-end">
+					<a
+						class="maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
+						href="/partner-with-us"
+					>
+						<Icon name="handshake" />
+						Partner With Us
+					</a>
+					<a
+						class="flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
+						href="/locations"
+					>
+						<Icon name="location_on" />
+						View Locations
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="ocean-field px-md py-xl lg:px-lg">
+			<div class="mx-auto max-w-container-max space-y-lg">
+				<div class="reveal max-w-2xl">
+					<p class="font-label-caps text-xs uppercase text-secondary">Captain's Log</p>
+					<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">Monthly Team Tables</h2>
+				</div>
+
+				<div class="grid grid-cols-1 gap-lg">
+					{
+						leaderboardMonths.map((month, index) => (
+							<section
+								class:list={[
+									"reveal relative overflow-hidden rounded-sm border-2 border-primary bg-white/88 shadow-crisp-offset backdrop-blur-sm",
+									index === 1 && "reveal-delay-1",
+									index === 2 && "reveal-delay-2",
+								]}
+								aria-labelledby={`${month.month.toLowerCase()}-${month.year}-leaderboard`}
+							>
+								<div class="pointer-events-none absolute -right-8 -top-10 opacity-[0.045]">
+									<LogoMark class="h-56 w-56" />
+								</div>
+
+								<div class="relative z-10 flex flex-col gap-sm border-b-2 border-primary bg-surface-container-low/90 p-md sm:flex-row sm:items-end sm:justify-between lg:p-lg">
+									<div>
+										<p class="font-label-caps text-xs uppercase text-secondary">Annapolis League</p>
+										<h3 id={`${month.month.toLowerCase()}-${month.year}-leaderboard`} class="font-headline-lg text-3xl uppercase text-primary">
+											{month.month} {month.year}
+										</h3>
+									</div>
+									<p class="inline-flex w-fit items-center gap-2 rounded-full border border-outline-variant bg-white px-3 py-1 font-label-caps text-[10px] uppercase text-on-surface-variant">
+										<Icon name={month.status === "Coming Soon" ? "schedule" : "anchor"} class="text-secondary text-sm" />
+										{month.status}
+									</p>
+								</div>
+
+								<div class="relative z-10 overflow-x-auto">
+									<table class="w-full min-w-[640px] border-collapse text-left">
+										<thead>
+											<tr class="border-b border-outline-variant bg-white/70">
+												<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Team Name</th>
+												<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Venue</th>
+												<th class="px-md py-sm text-right font-label-caps text-xs uppercase text-primary">Total Points</th>
+											</tr>
+										</thead>
+										<tbody>
+											{
+												month.rows.length > 0 ? (
+													month.rows.map((row) => (
+														<tr class="border-b border-outline-variant/70 last:border-b-0">
+															<td class="px-md py-md font-bold text-on-surface">{row.teamName}</td>
+															<td class="px-md py-md text-on-surface-variant">{row.venue}</td>
+															<td class="px-md py-md text-right font-headline-lg text-2xl text-secondary">{row.totalPoints}</td>
+														</tr>
+													))
+												) : (
+													<tr>
+														<td class="px-md py-lg text-center text-on-surface-variant" colspan="3">
+															<div class="mx-auto flex max-w-md flex-col items-center gap-sm">
+																<Icon name={month.status === "Coming Soon" ? "waves" : "sailing"} class="text-secondary text-4xl" />
+																<p class="font-label-caps text-xs uppercase text-primary">
+																	{month.status === "Coming Soon" ? "Scores launch soon" : "No scores posted for this month"}
+																</p>
+																<p class="text-sm">
+																	{month.status === "Coming Soon"
+																		? "June standings will appear here once league nights begin."
+																		: "This table is ready when results are added."}
+																</p>
+															</div>
+														</td>
+													</tr>
+												)
+											}
+										</tbody>
+									</table>
+								</div>
+							</section>
+						))
+					}
+				</div>
+			</div>
+		</section>
+	</main>
+	<SiteFooter />
+	<PageInteractions />
+</BaseLayout>

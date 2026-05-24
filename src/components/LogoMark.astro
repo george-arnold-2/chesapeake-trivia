@@ -1,0 +1,51 @@
+---
+interface Props {
+	class?: string;
+	variant?: "light" | "dark";
+}
+
+const { class: className = "h-8 w-8", variant = "dark" } = Astro.props;
+const colors =
+	variant === "light"
+		? {
+				hull: "#ffffff",
+				sail: "#d2e4fb",
+				stroke: "#ffffff",
+				accent: "#fc7127",
+				water: "#b7c8de",
+			}
+		: {
+				hull: "#041627",
+				sail: "#ffffff",
+				stroke: "#041627",
+				accent: "#a23f00",
+				water: "#4f6073",
+			};
+---
+
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 100 100"
+	fill="none"
+	class={className}
+	aria-hidden="true"
+>
+	<circle cx="50" cy="50" r="45" fill={variant === "light" ? "#041627" : "#f4fafd"} />
+	<path d="M20 64.5h60c-5 10.5-55 10.5-60 0Z" fill={colors.hull} stroke={colors.stroke} stroke-width="3" stroke-linejoin="round" />
+	<path d="M50 19v43" stroke={colors.stroke} stroke-width="4" stroke-linecap="round" />
+	<path d="M52 22 76 56H52Z" fill={colors.sail} stroke={colors.stroke} stroke-width="3" stroke-linejoin="round" />
+	<path d="M46 31v25H24Z" fill={colors.sail} stroke={colors.stroke} stroke-width="3" stroke-linejoin="round" />
+	<circle cx="61.5" cy="47" r="4.5" fill={colors.accent} />
+	<path
+		d="M15 78c10-6 20-6 30 0s20 6 30 0c5-3 10-5 15-6"
+		stroke={colors.water}
+		stroke-width="4"
+		stroke-linecap="round"
+	/>
+	<path
+		d="M38 84c8-3 16-3 24 0s16 3 24 0"
+		stroke={colors.accent}
+		stroke-width="3"
+		stroke-linecap="round"
+	/>
+</svg>

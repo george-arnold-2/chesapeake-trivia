@@ -1,0 +1,165 @@
+---
+import Icon from "../components/Icon.astro";
+import LogoMark from "../components/LogoMark.astro";
+import PageInteractions from "../components/PageInteractions.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { images, site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const experienceCards = [
+	{
+		icon: "school",
+		title: "7 Years Teaching",
+		description:
+			"Teaching sharpened the timing, clarity, and room awareness that matter when you are guiding a crowd through a live night.",
+	},
+	{
+		icon: "theater_comedy",
+		title: "Theatrical Roots",
+		description:
+			"More than a decade of theatrical experience means the microphone is not an afterthought. The room should have rhythm, presence, and personality.",
+	},
+	{
+		icon: "casino",
+		title: "Game Master Instincts",
+		description:
+			"Decades around tabletop games built a love for pacing, stakes, story, rules, and the small moments that keep people invested.",
+	},
+	{
+		icon: "mic_external_on",
+		title: "Large-Room Hosting",
+		description:
+			"Experience hosting in large bars, college bars, and corporate settings helps the night fit the crowd instead of forcing one format onto every room.",
+	},
+];
+---
+
+<BaseLayout
+	title={`About the Founder | ${site.name}`}
+	description="Meet the Chesapeake Trivia founder and host behind Annapolis community trivia nights."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-background">
+		<section class="relative overflow-hidden bg-primary px-md py-xl text-on-primary lg:px-lg">
+			<div class="nautical-grid absolute inset-0"></div>
+			<div class="absolute -right-12 -top-14 opacity-10">
+				<LogoMark class="h-72 w-72" variant="light" />
+			</div>
+
+			<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 items-center gap-xl lg:grid-cols-[minmax(0,1fr)_20rem] xl:grid-cols-[minmax(0,1fr)_22rem]">
+				<div class="reveal max-w-3xl space-y-md">
+					<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
+						<Icon name="person" class="text-on-secondary text-sm" />
+						<span class="font-label-caps text-[10px] uppercase text-on-secondary">About the Founder</span>
+					</div>
+					<h1 class="font-display-lg text-5xl uppercase leading-tight md:text-7xl">Meet the Host</h1>
+					<p class="font-body-lg text-body-lg text-primary-fixed-dim/90">
+						Chesapeake Trivia is built around a simple belief: a good host can turn a night out into a room full of
+						people who feel connected.
+					</p>
+				</div>
+
+				<div class="reveal reveal-delay-1 w-fit justify-self-start lg:justify-self-center">
+					<div class="relative">
+						<div class="absolute inset-0 rotate-6 rounded-full border-2 border-secondary/70"></div>
+						<div class="relative h-64 w-64 overflow-hidden rounded-full border-4 border-primary-fixed-dim bg-white p-1 shadow-crisp-lg">
+							<img
+								src={images.host}
+								alt="Chesapeake Trivia founder and host"
+								class="h-full w-full rounded-full object-cover"
+								loading="eager"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="ocean-field px-md py-xl lg:px-lg">
+			<div class="mx-auto grid max-w-container-max grid-cols-1 gap-xl lg:grid-cols-[0.9fr_1.1fr]">
+				<aside class="reveal space-y-md">
+					<div class="rounded-sm border-2 border-primary bg-white/88 p-lg shadow-crisp-offset backdrop-blur-sm">
+						<p class="font-label-caps text-xs uppercase text-secondary">Maryland Native</p>
+						<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">PG County roots, Annapolis home</h2>
+						<p class="mt-md leading-relaxed text-on-surface">
+							I grew up in Prince George's County and now call Annapolis home. In 2025, I started a new chapter
+							of my life, with a deep appreciation for community, steadiness, and showing up well for the people
+							around me.
+						</p>
+						<p class="mt-md leading-relaxed text-on-surface">
+							I am also a dad, and I love my son to death. That part of my life keeps the whole project grounded:
+							build things that feel warm, real, and worth coming back to.
+						</p>
+					</div>
+
+					<div class="rounded-sm border-l-8 border-secondary bg-white/65 p-md backdrop-blur-sm">
+						<p class="font-body-lg font-medium leading-relaxed text-primary">
+							I am a microphone person, a karaoke-night liability, and someone who genuinely enjoys crowd work.
+							The trick is using that energy in service of the room, not to take it over.
+						</p>
+					</div>
+				</aside>
+
+				<div class="space-y-lg">
+					<div class="reveal reveal-delay-1 space-y-md">
+						<p class="font-label-caps text-xs uppercase text-secondary">Hosting Philosophy</p>
+						<h2 class="font-headline-lg text-4xl uppercase leading-none text-primary">
+							Trivia should have pace, warmth, and a little pop
+						</h2>
+						<p class="font-body-lg leading-relaxed text-on-surface">
+							After researching trivia around the area, I kept seeing the same missed opportunities: hosts without
+							much charisma, long dead air between questions, and games that did the job but did not add much flavor.
+							I want Chesapeake Trivia to meet people where they are, keep the night moving, and make the event feel
+							specific to the room.
+						</p>
+						<p class="font-body-lg leading-relaxed text-on-surface">
+							The goal is not to be flashy for its own sake. It is to help venues create repeatable community
+							experiences where regulars bring friends, teams form habits, and local businesses feel supported.
+						</p>
+					</div>
+
+					<div class="grid grid-cols-1 gap-md sm:grid-cols-2">
+						{
+							experienceCards.map((card, index) => (
+								<div
+									class:list={[
+										"reveal rounded-sm border-2 border-outline-variant bg-white/82 p-md backdrop-blur-sm md:p-lg",
+										index === 1 && "reveal-delay-1",
+										index === 2 && "reveal-delay-2",
+										index === 3 && "reveal-delay-3",
+									]}
+								>
+									<div class="mb-sm flex h-12 w-12 items-center justify-center rounded-sm bg-primary text-on-primary">
+										<Icon name={card.icon} class="text-2xl" />
+									</div>
+									<h3 class="font-label-caps text-sm uppercase text-primary">{card.title}</h3>
+									<p class="mt-2 text-sm leading-relaxed text-on-surface-variant">{card.description}</p>
+								</div>
+							))
+						}
+					</div>
+
+					<div class="reveal reveal-delay-2 flex flex-wrap gap-md">
+						<a
+							class="maritime-btn flex items-center gap-2 rounded-sm bg-primary px-lg py-md font-label-caps uppercase text-on-primary shadow-crisp-sm"
+							href="/partner-with-us"
+						>
+							<Icon name="handshake" />
+							Partner With Us
+						</a>
+						<a
+							class="flex items-center gap-2 rounded-sm border-2 border-primary px-lg py-md font-label-caps uppercase text-primary transition-all hover:bg-primary hover:text-on-primary"
+							href="/locations"
+						>
+							<Icon name="location_on" />
+							View Locations
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<SiteFooter />
+	<PageInteractions />
+</BaseLayout>
