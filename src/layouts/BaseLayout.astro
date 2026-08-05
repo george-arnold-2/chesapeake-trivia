@@ -5,9 +5,34 @@ import { site } from "../data/site";
 interface Props {
 	title?: string;
 	description?: string;
+	image?: string;
 }
 
-const { title = site.title, description = site.description } = Astro.props;
+const {
+	title = site.title,
+	description = site.description,
+	image = "/images/ocean-field.jpg",
+} = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
+const socialImageUrl = new URL(image, site.url).toString();
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "EntertainmentBusiness",
+	name: site.name,
+	url: site.url,
+	description: site.description,
+	email: site.email,
+	areaServed: {
+		"@type": "City",
+		name: "Annapolis",
+		address: {
+			"@type": "PostalAddress",
+			addressRegion: "MD",
+			addressCountry: "US",
+		},
+	},
+	sameAs: [site.instagramUrl],
+};
 ---
 
 <!doctype html>
@@ -19,7 +44,20 @@ const { title = site.title, description = site.description } = Astro.props;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href={canonicalUrl} />
 		<title>{title}</title>
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={socialImageUrl} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={socialImageUrl} />
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

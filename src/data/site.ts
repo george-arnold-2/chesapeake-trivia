@@ -1,5 +1,6 @@
 export const site = {
     name: 'Chesapeake Trivia',
+    url: 'https://chesapeaketrivia.com',
     title: 'Chesapeake Trivia | Annapolis Community Trivia',
     description:
         'Vibrant local hosting for Annapolis bars, pubs, private events, and community trivia nights.',
