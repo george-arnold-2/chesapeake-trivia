@@ -3,6 +3,7 @@ import { site } from "../data/site";
 const pages = [
 	{ path: "/", priority: "1.0" },
 	{ path: "/about-me/", priority: "0.8" },
+	{ path: "/for-players/", priority: "0.9" },
 	{ path: "/locations/", priority: "0.8" },
 	{ path: "/leaderboard/", priority: "0.6" },
 	{ path: "/partner-with-us/", priority: "0.9" },

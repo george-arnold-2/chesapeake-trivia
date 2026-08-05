@@ -204,7 +204,7 @@ a {
 }
 
 .maritime-btn.bg-secondary {
-    --btn-sweep: #041627;
+    --btn-sweep: #ffdbcd;
 }
 
 .maritime-btn.bg-primary {
@@ -214,8 +214,16 @@ a {
 .maritime-btn:hover,
 .maritime-btn:focus-visible {
     background-position: 0 0;
-    box-shadow: 0 2px 0 rgba(4, 22, 39, 0.2), 0 18px 34px -28px rgba(4, 22, 39, 0.62);
+    box-shadow:
+        inset 0 0 0 2px rgba(162, 63, 0, 0.3),
+        0 2px 0 rgba(4, 22, 39, 0.2),
+        0 18px 34px -28px rgba(4, 22, 39, 0.62);
     transform: translateY(-1px);
+}
+
+.maritime-btn.bg-secondary:hover,
+.maritime-btn.bg-secondary:focus-visible {
+    color: #351000;
 }
 
 .maritime-btn .material-symbols-outlined {

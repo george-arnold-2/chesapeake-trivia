@@ -4,13 +4,15 @@ import LogoMark from "../components/LogoMark.astro";
 import PageInteractions from "../components/PageInteractions.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import { leaderboardMonths, site } from "../data/site";
+import { leaderboardSeasons, seasonPointRules, site } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const activeSeason = leaderboardSeasons[0];
 ---
 
 <BaseLayout
-	title={`Leaderboard | ${site.name}`}
-	description="Monthly Chesapeake Trivia team standings for Annapolis trivia nights."
+	title={`Season Leaderboard | ${site.name}`}
+	description="Chesapeake Trivia season standings, points structure, and six-week league format for Annapolis teams."
 >
 	<SiteHeader />
 	<main class="flex-grow bg-background">
@@ -24,22 +26,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				<div class="reveal max-w-3xl space-y-md">
 					<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
 						<Icon name="leaderboard" class="text-on-secondary text-sm" />
-						<span class="font-label-caps text-[10px] uppercase text-on-secondary">Monthly Standings</span>
+						<span class="font-label-caps text-[10px] uppercase text-on-secondary">Season Standings</span>
 					</div>
 					<h1 class="font-display-lg text-5xl uppercase leading-tight md:text-7xl">Leaderboard</h1>
 					<p class="font-body-lg text-body-lg text-primary-fixed-dim/90">
-						Track the teams making waves across Annapolis trivia nights. Bring the crowd, claim the table, and
-						keep your venue in the conversation week after week.
+						Track Chesapeake Trivia teams across six-week seasons. Show up, finish strong, and stack points toward
+						the season table.
 					</p>
 				</div>
 
 				<div class="reveal reveal-delay-1 flex flex-wrap gap-md lg:justify-end">
 					<a
 						class="cta-link maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
-						href="/partner-with-us"
+						href="/for-players"
 					>
-						<Icon name="handshake" />
-						Partner With Us
+						<Icon name="groups" />
+						For Players
 					</a>
 					<a
 						class="cta-link flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
@@ -54,78 +56,156 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 		<section class="ocean-field px-md py-xl lg:px-lg">
 			<div class="mx-auto max-w-container-max space-y-lg">
-				<div class="reveal max-w-2xl">
-					<p class="font-label-caps text-xs uppercase text-secondary">Captain's Log</p>
-					<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">Monthly Team Tables</h2>
-				</div>
+				<div class="reveal grid grid-cols-1 gap-lg lg:grid-cols-[0.95fr_1.05fr]">
+					<div class="rounded-sm border-2 border-primary bg-white/88 p-lg shadow-crisp-offset backdrop-blur-sm">
+						<p class="font-label-caps text-xs uppercase text-secondary">Season Format</p>
+						<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">Six weeks, top-three points</h2>
+						<p class="mt-md font-body-lg leading-relaxed text-on-surface">
+							Each season runs for six weeks. At every game, teams earn leaderboard points by finishing in the
+							top three for that night.
+						</p>
+						<p class="mt-md leading-relaxed text-on-surface-variant">
+							Weekly winners may receive prizes from the host bar, and those day-of prizes are chosen by that
+							venue. Top season teams will also have an opportunity to win additional prizes when the season wraps.
+						</p>
+					</div>
 
-				<div class="grid grid-cols-1 gap-lg">
-					{
-						leaderboardMonths.map((month, index) => (
-							<section
-								class:list={[
-									"reveal relative overflow-hidden rounded-sm border-2 border-primary bg-white/88 shadow-crisp-offset backdrop-blur-sm",
-									index === 1 && "reveal-delay-1",
-									index === 2 && "reveal-delay-2",
-								]}
-								aria-labelledby={`${month.month.toLowerCase()}-${month.year}-leaderboard`}
-							>
-								<div class="pointer-events-none absolute -right-8 -top-10 opacity-[0.045]">
-									<LogoMark class="h-56 w-56" />
-								</div>
-
-								<div class="relative z-10 flex flex-col gap-sm border-b-2 border-primary bg-surface-container-low/90 p-md sm:flex-row sm:items-end sm:justify-between lg:p-lg">
-									<div>
-										<p class="font-label-caps text-xs uppercase text-secondary">Annapolis League</p>
-										<h3 id={`${month.month.toLowerCase()}-${month.year}-leaderboard`} class="font-headline-lg text-3xl uppercase text-primary">
-											{month.month} {month.year}
-										</h3>
+					<div class="grid grid-cols-1 gap-md sm:grid-cols-3">
+						{
+							seasonPointRules.map((rule, index) => (
+								<div
+									class:list={[
+										"reveal rounded-sm border-2 border-primary bg-surface-container-lowest p-md text-center shadow-crisp-sm",
+										index === 1 && "reveal-delay-1",
+										index === 2 && "reveal-delay-2",
+									]}
+								>
+									<div class="mx-auto flex h-12 w-12 items-center justify-center rounded-sm bg-primary text-on-primary">
+										<Icon name={rule.icon} class="text-2xl" />
 									</div>
-									<p class="inline-flex w-fit items-center gap-2 rounded-full border border-outline-variant bg-white px-3 py-1 font-label-caps text-[10px] uppercase text-on-surface-variant">
-										<Icon name={month.status === "Coming Soon" ? "schedule" : "anchor"} class="text-secondary text-sm" />
-										{month.status}
+									<p class="mt-sm font-label-caps text-xs uppercase text-secondary">{rule.place} Place</p>
+									<p class="font-headline-lg text-5xl uppercase text-primary">{rule.points}</p>
+									<p class="font-label-caps text-xs uppercase text-on-surface-variant">
+										{rule.points === 1 ? "Point" : "Points"}
 									</p>
 								</div>
+							))
+						}
+					</div>
+				</div>
 
-								<div class="relative z-10 overflow-x-auto">
-									<table class="w-full min-w-[640px] border-collapse text-left">
-										<thead>
-											<tr class="border-b border-outline-variant bg-white/70">
-												<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Team Name</th>
-												<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Venue</th>
-												<th class="px-md py-sm text-right font-label-caps text-xs uppercase text-primary">Total Points</th>
-											</tr>
-										</thead>
-										<tbody>
-											{
-												month.rows.length > 0 ? (
-													month.rows.map((row) => (
+				<div class="reveal reveal-delay-1 overflow-hidden rounded-sm border-2 border-primary bg-white/90 shadow-crisp-offset backdrop-blur-sm">
+					<div class="flex flex-col gap-md border-b-2 border-primary bg-surface-container-low/90 p-md lg:flex-row lg:items-end lg:justify-between lg:p-lg">
+						<div>
+							<p class="font-label-caps text-xs uppercase text-secondary">Season Tabs</p>
+							<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">Current and Coming Seasons</h2>
+						</div>
+						<a
+							class="cta-link flex w-fit items-center gap-2 rounded-sm border-2 border-primary px-md py-sm font-label-caps text-xs uppercase text-primary transition-all hover:bg-primary hover:text-on-primary"
+							href="https://peakesocial.leaguelab.com/league/106094/details"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<Icon name="app_registration" />
+							Team Sign Up
+						</a>
+					</div>
+
+					<div class="border-b border-outline-variant bg-white px-md pt-md">
+						<div class="flex gap-sm overflow-x-auto" role="tablist" aria-label="Leaderboard seasons">
+							{
+								leaderboardSeasons.map((season) => (
+									<button
+										class:list={[
+											"season-tab shrink-0 rounded-t-sm border-2 border-b-0 border-primary px-md py-sm font-label-caps text-xs uppercase transition-all",
+											season.id === activeSeason.id
+												? "is-active bg-primary text-on-primary"
+												: "bg-surface-container-low text-primary hover:bg-primary-fixed",
+										]}
+										type="button"
+										role="tab"
+										aria-selected={season.id === activeSeason.id ? "true" : "false"}
+										aria-controls={`${season.id}-panel`}
+										id={`${season.id}-tab`}
+										data-season-tab={season.id}
+									>
+										{season.label}
+									</button>
+								))
+							}
+						</div>
+					</div>
+
+					{
+						leaderboardSeasons.map((season) => (
+							<section
+								class:list={[
+									"season-panel p-md lg:p-lg",
+									season.id !== activeSeason.id && "hidden",
+								]}
+								id={`${season.id}-panel`}
+								role="tabpanel"
+								aria-labelledby={`${season.id}-tab`}
+								data-season-panel={season.id}
+							>
+								<div class="grid grid-cols-1 gap-lg lg:grid-cols-[0.8fr_1.2fr]">
+									<aside class="space-y-md">
+										<div class="rounded-sm border-l-8 border-secondary bg-surface-container-lowest p-md">
+											<p class="font-label-caps text-xs uppercase text-secondary">{season.status}</p>
+											<h3 class="font-headline-lg mt-2 text-3xl uppercase text-primary">{season.label}</h3>
+											<p class="mt-sm leading-relaxed text-on-surface">{season.summary}</p>
+											<p class="mt-sm text-sm leading-relaxed text-on-surface-variant">{season.details}</p>
+										</div>
+
+										<div class="rounded-sm border-2 border-outline-variant bg-surface-container-low p-md">
+											<p class="font-label-caps text-xs uppercase text-primary">Season Prize Track</p>
+											<p class="mt-2 text-sm leading-relaxed text-on-surface-variant">
+												The top teams will have an opportunity to win additional prizes beyond any weekly
+												winner prizes offered by individual host bars.
+											</p>
+										</div>
+									</aside>
+
+									<div class="overflow-x-auto rounded-sm border-2 border-primary bg-white">
+										<table class="w-full min-w-[640px] border-collapse text-left">
+											<thead>
+												<tr class="border-b border-outline-variant bg-surface-container-low">
+													<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Rank</th>
+													<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Team Name</th>
+													<th class="px-md py-sm font-label-caps text-xs uppercase text-primary">Home Venue</th>
+													<th class="px-md py-sm text-right font-label-caps text-xs uppercase text-primary">Season Points</th>
+												</tr>
+											</thead>
+											<tbody>
+												{season.rows.length > 0 ? (
+													season.rows.map((row, index) => (
 														<tr class="border-b border-outline-variant/70 last:border-b-0">
+															<td class="px-md py-md font-bold text-secondary">{index + 1}</td>
 															<td class="px-md py-md font-bold text-on-surface">{row.teamName}</td>
 															<td class="px-md py-md text-on-surface-variant">{row.venue}</td>
-															<td class="px-md py-md text-right font-headline-lg text-2xl text-secondary">{row.totalPoints}</td>
+															<td class="px-md py-md text-right font-headline-lg text-2xl text-primary">{row.totalPoints}</td>
 														</tr>
 													))
 												) : (
 													<tr>
-														<td class="px-md py-lg text-center text-on-surface-variant" colspan="3">
+														<td class="px-md py-lg text-center text-on-surface-variant" colspan="4">
 															<div class="mx-auto flex max-w-md flex-col items-center gap-sm">
-																<Icon name={month.status === "Coming Soon" ? "waves" : "sailing"} class="text-secondary text-4xl" />
+																<Icon name={season.id === activeSeason.id ? "flag" : "schedule"} class="text-secondary text-4xl" />
 																<p class="font-label-caps text-xs uppercase text-primary">
-																	{month.status === "Coming Soon" ? "Scores launch soon" : "No scores posted for this month"}
+																	{season.id === activeSeason.id ? "Standings begin this season" : "Coming soon"}
 																</p>
 																<p class="text-sm">
-																	{month.status === "Coming Soon"
-																		? "June standings will appear here once league nights begin."
-																		: "This table is ready when results are added."}
+																	{season.id === activeSeason.id
+																		? "Fall 2026 teams will appear here once games begin and points are posted."
+																		: "No standings are tracked before Fall 2026."}
 																</p>
 															</div>
 														</td>
 													</tr>
-												)
-											}
-										</tbody>
-									</table>
+												)}
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</section>
 						))
@@ -137,3 +217,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<SiteFooter />
 	<PageInteractions />
 </BaseLayout>
+
+<script>
+	const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-season-tab]"));
+	const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-season-panel]"));
+
+	tabs.forEach((tab) => {
+		tab.addEventListener("click", () => {
+			const seasonId = tab.dataset.seasonTab;
+
+			tabs.forEach((item) => {
+				const isActive = item.dataset.seasonTab === seasonId;
+				item.setAttribute("aria-selected", String(isActive));
+				item.classList.toggle("is-active", isActive);
+				item.classList.toggle("bg-primary", isActive);
+				item.classList.toggle("text-on-primary", isActive);
+				item.classList.toggle("bg-surface-container-low", !isActive);
+				item.classList.toggle("text-primary", !isActive);
+				item.classList.toggle("hover:bg-primary-fixed", !isActive);
+			});
+
+			panels.forEach((panel) => {
+				panel.classList.toggle("hidden", panel.dataset.seasonPanel !== seasonId);
+			});
+		});
+	});
+</script>

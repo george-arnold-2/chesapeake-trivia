@@ -1,0 +1,188 @@
+---
+import Icon from "../components/Icon.astro";
+import LogoMark from "../components/LogoMark.astro";
+import PageInteractions from "../components/PageInteractions.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { seasonPointRules, site } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const signupUrl = "https://peakesocial.leaguelab.com/league/106094/details";
+
+const seasonSteps = [
+	{
+		icon: "event_repeat",
+		title: "Play Across Six Weeks",
+		description:
+			"Each season gives teams six weeks to show up, build a rhythm, and climb the standings one game at a time.",
+	},
+	{
+		icon: "leaderboard",
+		title: "Earn Top-Three Points",
+		description:
+			"Finish in the top three at a game and your team adds points to the season leaderboard.",
+	},
+	{
+		icon: "redeem",
+		title: "Chase Weekly and Season Prizes",
+		description:
+			"Weekly winner prizes depend on the host bar. Top season teams will also have an opportunity to win additional prizes.",
+	},
+];
+
+const houseRules = [
+	"No Phones! All answers come from your brains or out of your behind.",
+	"Don't know the answer? Write down something funny. Make me laugh and I might give a bonus point.",
+	"No shouting out answers, correct or incorrect.",
+	"No spelling doesn't count, I promize you spelt it beter than I wood half.",
+];
+---
+
+<BaseLayout
+	title={`For Players | ${site.name}`}
+	description="How Chesapeake Trivia seasons work, common trivia rules, leaderboard points, and team signup information for Annapolis players."
+>
+	<SiteHeader />
+	<main class="flex-grow bg-background">
+		<section class="relative overflow-hidden bg-primary px-md py-xl text-on-primary lg:px-lg">
+			<div class="nautical-grid absolute inset-0"></div>
+			<div class="absolute -right-12 -top-14 opacity-10">
+				<LogoMark class="h-72 w-72" variant="light" />
+			</div>
+
+			<div class="relative z-10 mx-auto grid max-w-container-max grid-cols-1 items-center gap-xl lg:grid-cols-[minmax(0,1fr)_22rem]">
+				<div class="reveal max-w-3xl space-y-md">
+					<div class="inline-flex items-center gap-2 rounded-full border border-secondary-container/70 bg-secondary px-3 py-1 shadow-crisp-sm">
+						<Icon name="groups" class="text-on-secondary text-sm" />
+						<span class="font-label-caps text-[10px] uppercase text-on-secondary">For Players</span>
+					</div>
+					<h1 class="font-display-lg text-5xl uppercase leading-tight md:text-7xl">Rally the Team</h1>
+					<p class="font-body-lg text-body-lg text-primary-fixed-dim/90">
+						Chesapeake Trivia is built for regulars, walk-ins, first-timers, and teams with one deeply suspicious
+						friend who knows every state capital.
+					</p>
+					<div class="flex flex-wrap gap-md">
+						<a
+							class="cta-link maritime-btn flex items-center gap-2 rounded-sm bg-secondary px-lg py-md font-label-caps uppercase text-on-secondary shadow-crisp-md"
+							href={signupUrl}
+							target="_blank"
+							rel="noreferrer"
+						>
+							<Icon name="app_registration" />
+							Sign Up
+						</a>
+						<a
+							class="cta-link flex items-center gap-2 rounded-sm border-2 border-primary-fixed-dim px-lg py-md font-label-caps uppercase text-primary-fixed-dim transition-all hover:bg-primary-fixed-dim hover:text-primary"
+							href="/leaderboard"
+						>
+							<Icon name="leaderboard" />
+							Leaderboard
+						</a>
+					</div>
+				</div>
+
+				<div class="reveal reveal-delay-1 rounded-sm border-2 border-primary-fixed-dim bg-primary-container/80 p-lg shadow-crisp-offset">
+					<p class="font-label-caps text-xs uppercase text-secondary-container">Player Note</p>
+					<h2 class="font-headline-lg mt-2 text-4xl uppercase text-white">Signup is optional</h2>
+					<p class="mt-md leading-relaxed text-primary-fixed-dim">
+						You can play without signing up. Registration just helps make sure your team name, home venue, and
+						season points are tracked cleanly on the leaderboard.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="ocean-field px-md py-xl lg:px-lg">
+			<div class="mx-auto max-w-container-max space-y-xl">
+				<div class="grid grid-cols-1 gap-lg lg:grid-cols-3">
+					{
+						seasonSteps.map((step, index) => (
+							<div
+								class:list={[
+									"reveal rounded-sm border-2 border-primary bg-white/88 p-lg shadow-crisp-offset backdrop-blur-sm",
+									index === 1 && "reveal-delay-1",
+									index === 2 && "reveal-delay-2",
+								]}
+							>
+								<div class="mb-md flex h-12 w-12 items-center justify-center rounded-sm bg-primary text-on-primary">
+									<Icon name={step.icon} class="text-2xl" />
+								</div>
+								<h2 class="font-headline-lg text-3xl uppercase text-primary">{step.title}</h2>
+								<p class="mt-sm leading-relaxed text-on-surface-variant">{step.description}</p>
+							</div>
+						))
+					}
+				</div>
+
+				<div class="grid grid-cols-1 gap-xl lg:grid-cols-[0.9fr_1.1fr]">
+					<div class="reveal space-y-lg">
+						<div class="rounded-sm border-2 border-primary bg-white/90 p-lg shadow-crisp-offset backdrop-blur-sm">
+							<p class="font-label-caps text-xs uppercase text-secondary">Season Scoring</p>
+							<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">Finish high, move up</h2>
+							<p class="mt-md font-body-lg leading-relaxed text-on-surface">
+								The season leaderboard rewards consistent top finishes across the six-week run. Every game is a
+								chance to add points.
+							</p>
+							<div class="mt-md grid grid-cols-3 gap-sm">
+								{
+									seasonPointRules.map((rule) => (
+										<div class="rounded-sm border-2 border-outline-variant bg-surface-container-lowest p-sm text-center">
+											<p class="font-label-caps text-[10px] uppercase text-secondary">{rule.place}</p>
+											<p class="font-headline-lg text-4xl text-primary">{rule.points}</p>
+											<p class="text-xs font-bold uppercase text-on-surface-variant">
+												{rule.points === 1 ? "Point" : "Points"}
+											</p>
+										</div>
+									))
+								}
+							</div>
+						</div>
+
+						<div class="rounded-sm border-l-8 border-secondary bg-white/70 p-md backdrop-blur-sm">
+							<p class="font-body-lg font-medium leading-relaxed text-primary">
+								Weekly prizes are decided by the host bar for that night. Some places may offer gift cards,
+								discounts, tabs, or something wonderfully specific to their room.
+							</p>
+						</div>
+					</div>
+
+					<div class="reveal reveal-delay-1 rounded-sm border-2 border-primary bg-white/90 p-lg shadow-crisp-offset backdrop-blur-sm">
+						<p class="font-label-caps text-xs uppercase text-secondary">House Expectations</p>
+						<h2 class="font-headline-lg mt-2 text-4xl uppercase text-primary">Good game, clean game</h2>
+						<ul class="mt-md space-y-sm">
+							{
+								houseRules.map((rule) => (
+									<li class="flex gap-sm text-sm font-medium leading-relaxed text-on-surface">
+										<Icon name="check_circle" class="mt-0.5 shrink-0 text-lg text-secondary" />
+										<span>{rule}</span>
+									</li>
+								))
+							}
+						</ul>
+
+						<div class="mt-lg flex flex-wrap gap-md border-t border-outline-variant pt-md">
+							<a
+								class="cta-link maritime-btn flex items-center gap-2 rounded-sm bg-primary px-lg py-md font-label-caps uppercase text-on-primary shadow-crisp-sm"
+								href={signupUrl}
+								target="_blank"
+								rel="noreferrer"
+							>
+								<Icon name="app_registration" />
+								Register Team
+							</a>
+							<a
+								class="cta-link flex items-center gap-2 rounded-sm border-2 border-primary px-lg py-md font-label-caps uppercase text-primary transition-all hover:bg-primary hover:text-on-primary"
+								href="/leaderboard"
+							>
+								<Icon name="leaderboard" />
+								Season Standings
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<SiteFooter />
+	<PageInteractions />
+</BaseLayout>

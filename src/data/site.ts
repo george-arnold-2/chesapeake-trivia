@@ -13,6 +13,7 @@ export const site = {
 
 export const navLinks = [
     { label: 'Nights', href: '/#services' },
+    { label: 'For Players', href: '/for-players' },
     { label: 'Partner Locations', href: '/locations' },
     { label: 'Leaderboard', href: '/leaderboard' },
     { label: 'Instagram', href: site.instagramUrl, external: true },
@@ -95,29 +96,61 @@ export const communityPillars = [
 ];
 
 export const footerLinks = [
+    { label: 'For Players', href: '/for-players' },
+    { label: 'Leaderboard', href: '/leaderboard' },
     { label: 'Instagram', href: site.instagramUrl, external: true },
     { label: 'Charter Terms', href: '#' },
     { label: 'Privacy Log', href: '#' },
     { label: 'Partnership Inquiry', href: '/partner-with-us' },
 ];
 
-export const leaderboardMonths = [
+export const seasonPointRules = [
     {
-        month: 'June',
-        year: '2026',
+        place: '1st',
+        points: 3,
+        icon: 'military_tech',
+    },
+    {
+        place: '2nd',
+        points: 2,
+        icon: 'workspace_premium',
+    },
+    {
+        place: '3rd',
+        points: 1,
+        icon: 'emoji_events',
+    },
+];
+
+export const leaderboardSeasons = [
+    {
+        id: 'fall-2026',
+        label: 'Fall 2026',
+        status: 'Opening Season',
+        summary:
+            'The first Chesapeake Trivia season runs for six weeks. Teams earn season points by finishing in the top three at each game.',
+        details:
+            'Weekly winners can still receive bar-dependent prizes on the night. Top season teams will also have an opportunity to win additional prizes at the end of the run.',
+        rows: [],
+    },
+    {
+        id: 'winter-2026',
+        label: 'Winter 2026',
         status: 'Coming Soon',
+        summary:
+            'Winter season details will post after the Fall 2026 season is underway.',
+        details:
+            'No standings are tracked before Fall 2026. Check back for winter dates, venues, and season prize information.',
         rows: [],
     },
     {
-        month: 'May',
-        year: '2026',
-        status: 'No scores posted yet',
-        rows: [],
-    },
-    {
-        month: 'April',
-        year: '2026',
-        status: 'No scores posted yet',
+        id: 'spring-2027',
+        label: 'Spring 2027',
+        status: 'Coming Soon',
+        summary:
+            'Spring season details are still being charted for Annapolis teams.',
+        details:
+            'No standings are tracked before Fall 2026. Spring dates and host bars will be announced later.',
         rows: [],
     },
 ];
